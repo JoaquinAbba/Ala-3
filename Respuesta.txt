@@ -1,0 +1,66 @@
+Consigna: 
+Explica en un texto, con ejemplos y fundamentación qué características de la OOP utilizaste para resolver 
+los programas de los Ejercicios 2 y 3. Si hay alguna que no utilizaste o no implementaste, indica cuál y 
+por qué crees que no fue necesario.
+
+
+Respuesta:
+Para hacer la lista de tareas apliqué abstracción, encapsulamiento, ocultación de información y 
+modularidad. No usé herencia ni polimorfismo (abajo está la explicación).
+
+Abstracción: se usa para mostrar lo importante de un concepto y esconder como funciona por dentro, yo lo 
+utilicé en dos clases, Tarea y ListaTareas, por ejemplo:
+
+getEstadoTexto(): string {
+        if (this.estado === 1) {
+            return "Pendiente";
+        }
+        if (this.estado === 2) {
+            return "En curso";
+        }
+        return "Terminado";
+    }
+
+El estado de una tarea lo guarda como un numero (1, 2 o 3) pero no debe acordarse de qué significa 
+cada uno, le pide directamente el texto de respuesta.
+
+
+Encapsulamiento: Es juntar los datos y funciones que trabajan con ellos dentro de la misma clase, y controlar 
+como se accede a esos datos ya que son private, por eso para leerlos utilicé getters y para modificarlo utilicé
+setters, cada setter verifica que sea valido el cambio antes de guardarlo, por ejemplo:
+
+setTitulo(titulo: string): void {
+        if (titulo.trim() === "") {
+            console.log("Error: el título no puede estar vacío.");
+        } else if (titulo.length > 100) {
+            console.log("Error: el título debe ser más corto (máximo 100 caracteres).");
+        } else {
+            this.titulo = titulo;
+        }
+    }
+
+Ocultación de información: Dice que el estado interno del objeto no tiene que poder modificarse desde afuera, por 
+lo que puse a todos los atributos como private e hice que los getters de las fechas devuelvan una copia
+
+
+
+Modularidad: dividí el programa en tres archivos, cada uno con una funcion distinta:
+
+Tarea.ts tiene las clases Tarea y ListaTareas que guardan los datos.
+
+Funciones.ts tiene las interacciones con el usuario (menu, agregarTarea, editarTarea).
+
+Main.ts es el programa principal, que crea la lista y muestra el menú
+
+Estan todos conectados a través de export e import.
+
+
+Características de la OOP que no utilicé:
+
+Herencia: sirve cuando hay una clase padre y otras hijas, no lo vi necesario ya que todas las tareas tienen los mismos 
+datos
+
+Polimorfismo: Consiste en que objetos de distintas clases respondan de diferentes maneras a la misma orden, depende de 
+que existan varias clases relacionadas por herencia, por lo que no fue necesario utilizarla ya que no fue necesario
+aplicar herencia.
+
